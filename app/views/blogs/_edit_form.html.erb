@@ -1,0 +1,21 @@
+<%= form_with model: @blog, url: student_blog_path do |form| %>
+  <% if @blog.errors.any? %>
+    <% @blog.errors.full_messages.each do |message| %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= message %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class:"form-control form-control-lg" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :content %><em style="color:graytext; font-size:12px;"> (min.10 characters)</em>
+    <%= form.text_area :content, class:"form-control form-control-lg"  %>
+  </div>
+  <div class="form-group">
+    <%= form.submit class:"btn btn-primary mt-3" %>
+  </div>
+<% end %>

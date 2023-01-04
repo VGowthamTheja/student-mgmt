@@ -1,0 +1,7 @@
+/* ...
+ *= require_self
+ *= require_tree .
+ */
+@import "bootstrap";
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';

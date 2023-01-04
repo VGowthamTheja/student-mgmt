@@ -1,0 +1,10 @@
+<div id="flash">
+    <% flash.each do |key, value| %>
+        <div class="<%= flash_class(key.to_sym) %> alert-dismissible fade show mt-5" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <% unless value==true %>
+                <%= value %>
+            <% end %>
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,29 @@
+<div class="col-lg-10">
+
+<div class="card rounded-0 shadow mt-5 md-5">
+    <div class="card-body">
+      <h1>Course Details</h1>
+      <% if notice %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%= notice %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+      <p> <strong>Name:</strong> <%= @course.name %> </p>
+      <p> <strong>Description:</strong> <%= @course.description%> </p>
+      <% if !@course.students.empty?%>
+        <div class="card mt-3 mb-3" >
+          <div class="card-body">
+            <strong>Course scheduled to: </strong>
+            <ul>
+              <% @course.students.each do |student| %>
+                <li> <%= link_to student.full_name, student %> </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to 'Back', courses_path, class:"btn btn-primary" %>
+      <%= link_to 'Edit', edit_course_path(@course), class:"btn btn-secondary" %>
+    </div>
+</div>

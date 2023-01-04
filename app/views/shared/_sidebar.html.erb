@@ -1,0 +1,76 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Student Management</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;position:absolute;">
+      <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+            Home
+          </button>
+          <div class="collapse show" id="home-collapse" style="">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><%= link_to 'Blogs', blogs_list_path, class:"link-dark rounded" %></li>
+              <li><%= link_to 'Courses', courses_path, class:"link-dark rounded" %></li>
+              <% if current_user && current_user.previlage? %>
+                <li class="nav-item">
+                  <%= link_to 'Projects', projects_path, class:"link-dark rounded" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true">
+            Dashboard
+          </button>
+          <div class="collapse" id="dashboard-collapse" style="">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <% if current_user && current_user.admin? %>
+                <li>
+                  <%= link_to 'Admin Previlages', admin_users_path, class:"link-dark rounded" %>
+                </li>
+              <% end %>
+              <li><a href="#" class="link-dark rounded">Weekly</a></li>
+              <li><a href="#" class="link-dark rounded">Monthly</a></li>
+              <li><a href="#" class="link-dark rounded">Annually</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+            Orders
+          </button>
+          <div class="collapse" id="orders-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-dark rounded">New</a></li>
+              <li><a href="#" class="link-dark rounded">Processed</a></li>
+              <li><a href="#" class="link-dark rounded">Shipped</a></li>
+              <li><a href="#" class="link-dark rounded">Returned</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="border-top my-3"></li>
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+            Account
+          </button>
+          <div class="collapse" id="account-collapse" style="">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <% if current_user %>
+                <li><%= link_to 'Edit Profile', edit_user_registration_path, class:"link-dark rounded" %></li>
+                <li><a href="#" class="link-dark rounded">Settings</a></li>
+                <li><%= button_to 'Logout', destroy_user_session_path, method: :delete, data: {turbo: false}, form: { "data-turbo" => "false" }, class:"btn btn-danger btn-sm" %></li>
+              <% else %>
+                <li><%= link_to 'Sign Up!', new_user_registration_path, class:"link-dark rounded" %></li>
+                <li><%= link_to 'Log In', new_user_session_path, class:"link-dark rounded" %></li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

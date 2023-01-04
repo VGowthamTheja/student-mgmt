@@ -1,0 +1,41 @@
+<div class="col-lg-10">
+  <div class="card rounded-0 shadow mt-2 md-5">
+    <div class="card-body">
+      <h1>Student Details</h1>
+      <p> <strong>Name:</strong> <%= @student.full_name %> </p>
+      <p> <strong>Email:</strong> <%= @student.email%> </p>
+      <p> <strong>DOB:</strong> <%= formatted_date(@student.date_of_birth)%> </p>
+      <p> <strong>Age:</strong> <%= @student.age %> </p>
+      <p> <strong>Permanent Address:</strong> <%= @student.permanent_address%> </p>
+      <p> <strong>Local Address:</strong> <%= @student.local_address%> </p>
+      <p> <strong>Permanent Contact:</strong> <%= @student.permanent_contact_number%> </p>
+      <p> <strong>Alternate Contact:</strong> <%= @student.alternate_contact_number%> </p>
+      <% if @student.projects.present? %>
+        <div class="card mt-3 mb-3" >
+          <div class="card-body">
+            <strong>Working on these available projects: </strong>
+            <ul>
+              <% @student.projects.each do |project| %>
+                <li> <%= link_to project.name, project %> </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <% if @student.blogs.present? %>
+        <div class="card mt-3 mb-3" >
+          <div class="card-body">
+            <strong>Blogs: </strong>
+            <ul>
+              <% @student.blogs.each do |blog| %>
+                <li> <%= link_to blog.title, student_blog_path(@student, blog) %> </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to 'New Blog', new_student_blog_path(@student), class:"btn btn-success" %>
+      <%= link_to 'Back', students_path, class:"btn btn-primary" %>
+      <%= link_to 'Edit', edit_student_path(@student), class:"btn btn-secondary" %>
+    </div>
+  </div>

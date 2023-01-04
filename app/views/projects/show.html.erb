@@ -1,0 +1,31 @@
+<div class="col-lg-10">
+  <div class="card rounded-0 shadow mt-5 md-5">
+    <div class="card-body">
+      <div class="d-flex align-items-center justify-content-start">
+        <h1>Project Details</h1>
+        <% if current_user.previlage? %>
+          <%= link_to 'Assign Project', '/', class:"btn btn-success btn-sm mx-2", data: { bs_toggle:"modal",bs_target: '#exampleModal'} %>
+        <% end %>
+      </div>
+      <p> <strong>Name:</strong> <%= @project.name %> </p>
+      <p> <strong>Description:</strong> <%= @project.description%> </p>
+      <% if !@project.students.empty?%>
+        <div class="card mt-3 mb-3" >
+          <div class="card-body">
+            <strong>Currently working students: </strong>
+            <ul>
+              <% @project.students.each do |student| %>
+                <li> <%= link_to student.full_name, student %> &rarr; till: <%= student.submit_by %> </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <% if current_user.previlage? %>
+        <%= link_to 'Back', projects_path, class:"btn btn-primary" %>
+        <%= link_to 'Edit', edit_project_path(@project), class:"btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render 'shared/modal' %>

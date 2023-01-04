@@ -1,0 +1,14 @@
+<div class="col-lg-12">
+  <h1>Blog Details</h1>
+  <div class="card mt-5">
+    <div class="card-body">
+      <p> <strong>Title:</strong> <%= @blog.title %> </p>
+      <p> <strong>Content:</strong> <%= @blog.content %> </p>
+      <p> <strong>Owned By:</strong> <%= @blog.blog_owner %> </p>
+      <hr />
+      <%= link_to 'edit', edit_student_blog_path(@student, @blog), class:"btn btn-secondary btn-sm" %>
+      <%= link_to 'back', student_path(@student), class:"btn btn-dark btn-sm" %>
+      <%= button_to 'delete', student_blog_path, class:"btn btn-danger btn-sm mt-1", method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+    </div>
+  </div>
+</div>

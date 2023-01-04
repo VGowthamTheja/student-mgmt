@@ -1,0 +1,23 @@
+<% if current_user %>
+  <p> Hello <%= current_user.user_name %>! </p>
+  <p> Successfully authenticated and logged in.</p>
+  <p>You are a [<%= current_user.role %>] </p>
+
+  <% if current_user.admin? %>
+    <p>There are <%= User.count %> users in the system</p>
+  <% end %>
+  
+<% else %>
+  <p>You are not signed in.</p>
+  <p>Please SignUp if signed up then Log in. </p>
+<% end %>
+<div class="col-lg-21 col-md-12" >
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title display-4">Student Management</h5>
+      <p class="card-text lead">This is online bootcamp model.</p>
+      <hr class="my-4" >
+      <%= link_to 'Student Registry', students_path, class:"btn btn-primary mt-1" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="col-lg-10">
+
+<h1>Courses</h1>
+
+<%= link_to "New course", new_course_path, class:"btn btn-primary mb-3" %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.name %></td>
+        <td><%= course.description %></td>
+        <td> <%= link_to 'View', course, class:"link-primary" %> </td>
+        <td> <%= link_to 'Edit', edit_course_path(course), class:"link-primary" %> </td>
+        <td> <%= button_to 'Delete', course_path(course), class:"btn btn-danger", method: :delete, data: {turbo_confirm: "Are you sure?"} %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

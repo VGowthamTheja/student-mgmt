@@ -1,0 +1,28 @@
+<div class="col-lg-10">
+  <h1>Admin Previlages</h1>
+  <%#= link_to 'New Student', new_student_path, class:"btn btn-primary btn-lg mt-3 mb-3" %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>User mail</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.user_name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= form_with model: user, url: admin_user_path(user) do |f| %>
+              <%= f.select :role, [['user',"user"],['manager',"manager"],['admin',"admin"]], { :selected => user.role }, { :class => "form-select" } %>
+              <%= f.submit class:"btn btn-success btn-sm" %>
+            <% end %>
+          </td>
+          <td> <%= button_to 'delete', admin_user_path(user), class:"btn btn-danger btn-sm", method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure to remove this user?" } %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
